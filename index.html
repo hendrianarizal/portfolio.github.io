@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rifky Hendriana — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ocean1: #0a1628;
+      --ocean2: #0d2137;
+      --ocean3: #0e2d4a;
+      --teal: #00c9b1;
+      --teal2: #00e5cc;
+      --cyan: #22d3ee;
+      --blue: #38bdf8;
+      --accent: #0ea5e9;
+      --glass: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.12);
+      --glass-hover: rgba(255,255,255,0.1);
+      --text: #f0f9ff;
+      --text-muted: #7dd3fc;
+      --text-dim: #94a3b8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--ocean1);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* BG EFFECT */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(0,201,177,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 80%, rgba(56,189,248,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(14,165,233,0.07) 0%, transparent 70%);
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--ocean1); }
+    ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10,22,40,0.75);
+      backdrop-filter: blur(24px) saturate(1.5);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-weight: 800; font-size: 1.1rem; color: var(--teal); text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+    .logo span { color: var(--text); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      transition: color 0.3s; position: relative; padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--teal); transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-links a:hover::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 8rem 2rem 4rem; position: relative;
+    }
+    .hero-grid {
+      max-width: 1120px; margin: auto;
+      display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;
+    }
+    .eyebrow-line {
+      width: 40px; height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--cyan));
+    }
+    .eyebrow-text {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--teal);
+    }
+
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900; line-height: 1.05; letter-spacing: -2px;
+      margin-bottom: 0.3rem;
+    }
+    .hero-name .first { color: var(--text); }
+    .hero-name .last {
+      background: linear-gradient(135deg, var(--teal), var(--cyan), var(--blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .hero-title {
+      font-size: 1rem; font-weight: 500; color: var(--text-muted);
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem; color: var(--text-dim); max-width: 580px;
+      margin-bottom: 2.5rem; line-height: 1.8;
+    }
+
+    .hero-contacts {
+      display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem;
+    }
+    .contact-row {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.85rem; color: var(--text-dim); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact-row:hover { color: var(--teal); }
+    .contact-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal); flex-shrink: 0;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.7rem 1.8rem; border-radius: 50px;
+      font-family: 'Poppins', sans-serif; font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: all 0.3s;
+      border: 1.5px solid transparent; display: inline-block;
+    }
+    .btn-teal {
+      background: linear-gradient(135deg, var(--teal), var(--cyan));
+      color: var(--ocean1);
+      box-shadow: 0 4px 24px rgba(0,201,177,0.35);
+    }
+    .btn-teal:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,201,177,0.5); }
+    .btn-ghost {
+      background: var(--glass); border-color: var(--glass-border); color: var(--text-muted);
+      backdrop-filter: blur(10px);
+    }
+    .btn-ghost:hover { background: var(--glass-hover); border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+
+    /* AVATAR CARD */
+    .hero-card {
+      background: var(--glass);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px; padding: 2.5rem;
+      text-align: center; min-width: 260px;
+      position: relative; overflow: hidden;
+    }
+    .hero-card::before {
+      content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), var(--cyan), transparent);
+    }
+    .avatar-circle {
+      width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 1.2rem;
+      background: linear-gradient(135deg, var(--ocean3), var(--ocean2));
+      border: 2px solid var(--glass-border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .avatar-circle::after {
+      content: ''; position: absolute; inset: -6px; border-radius: 50%;
+      border: 1.5px solid rgba(0,201,177,0.25);
+      animation: pulse-ring 2.5s ease-out infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.2); opacity: 0; }
+    }
+    .avatar-initials {
+      font-size: 2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--teal), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .card-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .card-role { font-size: 0.75rem; color: var(--teal); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .card-stats {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem;
+    }
+    .card-stat {
+      background: rgba(0,201,177,0.08); border: 1px solid rgba(0,201,177,0.15);
+      border-radius: 12px; padding: 0.7rem 0.5rem; text-align: center;
+    }
+    .card-stat-num { font-weight: 800; font-size: 1.1rem; color: var(--teal); }
+    .card-stat-label { font-size: 0.65rem; color: var(--text-dim); font-weight: 500; }
+
+    /* GLASS SECTION */
+    section { padding: 6rem 2rem; position: relative; }
+    .container { max-width: 1120px; margin: auto; }
+
+    .sec-label {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.8rem;
+    }
+    .sec-label-line { width: 30px; height: 2px; background: var(--teal); }
+    .sec-label-text { font-size: 0.72rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--teal); }
+    .sec-title { font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 3.5rem; }
+    .sec-title span {
+      background: linear-gradient(135deg, var(--teal), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* GLASS CARD BASE */
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .glass-card::before {
+      content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .glass-card:hover { background: var(--glass-hover); border-color: rgba(0,201,177,0.25); transform: translateY(-4px); }
+    .glass-card:hover::before { opacity: 1; }
+
+    /* ALT SECTION BG */
+    .sec-alt { background: rgba(13,33,55,0.5); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .skill-card { padding: 1.6rem; }
+    .skill-cat {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.7rem;
+    }
+    .skill-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .skill-items { font-size: 0.8rem; color: var(--text-dim); line-height: 1.6; }
+
+    /* EXPERIENCE */
+    .exp-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+    .exp-card { padding: 1.8rem 2rem; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem; }
+    .exp-role { font-weight: 700; font-size: 1rem; }
+    .exp-badge {
+      font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.8rem; border-radius: 100px;
+      background: rgba(0,201,177,0.1); border: 1px solid rgba(0,201,177,0.2); color: var(--teal);
+      white-space: nowrap;
+    }
+    .exp-company { color: var(--teal); font-size: 0.88rem; font-weight: 600; margin-bottom: 1rem; }
+    .exp-points { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .exp-points li {
+      font-size: 0.84rem; color: var(--text-dim); padding-left: 1.2rem; position: relative;
+    }
+    .exp-points li::before {
+      content: ''; position: absolute; left: 0; top: 0.65rem;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--teal); flex-shrink: 0;
+    }
+
+    /* CERT & PRESTASI */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .list-card { padding: 1.8rem; }
+    .list-card-title {
+      font-weight: 700; font-size: 0.95rem; margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .list-card-title::before {
+      content: ''; width: 4px; height: 18px; border-radius: 2px;
+      background: linear-gradient(to bottom, var(--teal), var(--cyan));
+    }
+    .cert-item, .prestasi-item {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;
+      padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .cert-item:last-child, .prestasi-item:last-child { border-bottom: none; }
+    .cert-name { font-size: 0.83rem; font-weight: 600; color: var(--text); }
+    .cert-issuer { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.1rem; }
+    .cert-valid { font-size: 0.72rem; color: var(--teal); font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+
+    /* ORGS */
+    .org-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
+    .org-card { padding: 1.6rem; }
+    .org-role { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .org-place { color: var(--teal); font-size: 0.82rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .org-period { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.8rem; }
+    .org-desc { font-size: 0.82rem; color: var(--text-dim); }
+
+    /* EDU */
+    .edu-card { padding: 2rem; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; }
+    .edu-badge {
+      width: 64px; height: 64px; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0,201,177,0.2), rgba(56,189,248,0.1));
+      border: 1px solid rgba(0,201,177,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; font-weight: 900; color: var(--teal); flex-shrink: 0;
+    }
+    .edu-school { font-weight: 800; font-size: 1.05rem; margin-bottom: 0.2rem; }
+    .edu-major { color: var(--teal); font-size: 0.88rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .edu-period { font-size: 0.78rem; color: var(--text-dim); margin-bottom: 0.7rem; }
+    .edu-note { font-size: 0.82rem; color: var(--text-dim); }
+
+    /* SOFT SKILLS */
+    .soft-grid { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2rem; }
+    .soft-tag {
+      padding: 0.4rem 1rem; border-radius: 100px;
+      background: rgba(0,201,177,0.08); border: 1px solid rgba(0,201,177,0.18);
+      font-size: 0.8rem; font-weight: 500; color: var(--text-muted);
+      transition: all 0.3s;
+    }
+    .soft-tag:hover { background: rgba(0,201,177,0.15); border-color: var(--teal); color: var(--teal); }
+
+    /* CONTACT SECTION */
+    .contact-section { background: rgba(0,201,177,0.04); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .contact-left h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.8rem; }
+    .contact-left p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 2rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 0.9rem; }
+    .c-item {
+      display: flex; align-items: center; gap: 1rem; text-decoration: none;
+      transition: color 0.3s;
+    }
+    .c-item:hover { color: var(--teal); }
+    .c-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700; color: var(--teal); flex-shrink: 0;
+      backdrop-filter: blur(10px); transition: all 0.3s;
+    }
+    .c-item:hover .c-icon { background: rgba(0,201,177,0.15); border-color: rgba(0,201,177,0.3); }
+    .c-label { font-size: 0.72rem; color: var(--text-dim); font-weight: 500; }
+    .c-value { font-size: 0.88rem; color: var(--text); font-weight: 500; }
+
+    /* FOOTER */
+    footer {
+      background: rgba(10,22,40,0.95); border-top: 1px solid var(--glass-border);
+      text-align: center; padding: 2rem;
+      font-size: 0.82rem; color: var(--text-dim);
+    }
+    footer strong { color: var(--teal); }
+
+    /* FADE ANIMATION */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+    .fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; background: rgba(10,22,40,0.97);
+        border-bottom: 1px solid var(--glass-border);
+        padding: 1.5rem 2rem; gap: 1.2rem;
+      }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .org-grid { grid-template-columns: 1fr; }
+      .edu-card { grid-template-columns: 1fr; text-align: center; gap: 1rem; }
+      .edu-badge { margin: 0 auto; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-name { letter-spacing: -1px; }
+      .exp-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#">Rifky<span>.dev</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#profil">Profil</a></li>
+      <li><a href="#keahlian">Keahlian</a></li>
+      <li><a href="#pengalaman">Pengalaman</a></li>
+      <li><a href="#pendidikan">Pendidikan</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="profil">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">Computer &amp; Network Engineer</div>
+      </div>
+      <h1 class="hero-name">
+        <span class="first">RIFKY </span><br>
+        <span class="last">HENDRIANA</span>
+      </h1>
+      <p class="hero-title"> Hardware &middot; Networking &middot; FTTH &middot; Creative Tech</p>
+      <p class="hero-desc">
+        Lulusan SMK Teknik Komputer Jaringan dengan rekam jejak nyata di industri telekomunikasi dan infrastruktur jaringan. Berpengalaman dalam instalasi FTTH, perencanaan topologi fiber optic, serta konfigurasi MikroTik, Cisco, dan Ubiquiti. Terbiasa bekerja dengan target dan mampu menyelesaikan masalah teknis secara mandiri maupun dalam tim.
+      </p>
+      <div class="hero-contacts">
+        <a class="contact-row" href="tel:082117468823">
+          <div class="contact-dot"></div>
+          082117468823
+        </a>
+        <a class="contact-row" href="mailto:rifkyhn.rizal@gmail.com">
+          <div class="contact-dot"></div>
+          rifkyhn.rizal@gmail.com
+        </a>
+        <div class="contact-row">
+          <div class="contact-dot"></div>
+          Caringin, Sukabumi, Jawa Barat
+        </div>
+        <div class="contact-row">
+          <div class="contact-dot"></div>
+          ailuascreative (TikTok / Instagram)
+        </div>
+      </div>
+      <div class="hero-btns">
+        <a href="#pengalaman" class="btn btn-teal">Lihat Pengalaman</a>
+        <a href="#kontak" class="btn btn-ghost">Hubungi Saya</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="avatar-circle">
+        <img src="https://res.cloudinary.com/dozoyiidz/image/upload/v1772492838/Rifky_Hendriana_gfio10.jpg" alt="Rifky Hendriana" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+      </div>
+      <div class="card-name">Rifky Hendriana</div>
+      <div class="card-role">Network Engineer</div>
+      <div class="card-stats">
+        <div class="card-stat">
+          <div class="card-stat-num">3+</div>
+          <div class="card-stat-label">Tahun Pengalaman</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-num">2</div>
+          <div class="card-stat-label">Sertifikasi</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-num">Rp 2M</div>
+          <div class="card-stat-label">Omset Dikelola</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-num">#1</div>
+          <div class="card-stat-label">Peringkat Kelas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEAHLIAN -->
+<section id="keahlian">
+  <div class="container">
+    <div class="sec-label"><div class="sec-label-line"></div><div class="sec-label-text">Kompetensi</div></div>
+    <h2 class="sec-title">Keahlian <span>Teknis</span></h2>
+    <div class="skills-grid">
+      <div class="glass-card skill-card fade-up">
+        <div class="skill-cat">Jaringan</div>
+        <div class="skill-name">Network Devices</div>
+        <div class="skill-items">MikroTik, Cisco, Ubiquiti, ONT, Access Point &mdash; konfigurasi &amp; troubleshooting</div>
+      </div>
+      <div class="glass-card skill-card fade-up">
+        <div class="skill-cat">Instalasi</div>
+        <div class="skill-name">FTTH &amp; Fiber Optic</div>
+        <div class="skill-items">FTTH, LAN, MAN &mdash; splicing fiber optic, pemasangan ODP hingga sisi pengguna</div>
+      </div>
+      <div class="glass-card skill-card fade-up">
+        <div class="skill-cat">Routing &amp; Protocol</div>
+        <div class="skill-name">Network Protokol</div>
+        <div class="skill-items">Static &amp; Dynamic Routing, BGP, OSPF, TCP/IP, OSI Layer, IP Addressing &amp; Subnetting</div>
+      </div>
+      <div class="glass-card skill-card fade-up">
+        <div class="skill-cat">Sistem Operasi</div>
+        <div class="skill-name">OS &amp; Platform</div>
+        <div class="skill-items">Windows 7/10/11, Debian, Kali Linux, RouterOS, airOS</div>
+      </div>
+      <div class="glass-card skill-card fade-up">
+        <div class="skill-cat">Perangkat Lunak</div>
+        <div class="skill-name">Software &amp; Tools</div>
+        <div class="skill-items">AutoCAD, VMware, VirtualBox, Canva, Microsoft Word &amp; Excel</div>
+      </div>
+      <div class="glass-card skill-card fade-up">
+        <div class="skill-cat">Pemrograman</div>
+        <div class="skill-name">Programming</div>
+        <div class="skill-items">HTML, CSS, JavaScript, C &mdash; level dasar hingga menengah</div>
+      </div>
+    </div>
+
+    <div class="soft-grid">
+      <span class="soft-tag">Operational Manager</span>
+      <span class="soft-tag">Adaptive</span>
+      <span class="soft-tag">Report &amp; Documentation</span>
+      <span class="soft-tag">Curious, Creative, &amp;Innovative</span>
+      <span class="soft-tag">leadership &amp; communication</span>
+      <span class="soft-tag">Fast Learning &amp; Problem Solving</span>
+    </div>
+  </div>
+</section>
+
+<!-- PENGALAMAN -->
+<section class="sec-alt" id="pengalaman">
+  <div class="container">
+    <div class="sec-label"><div class="sec-label-line"></div><div class="sec-label-text">Karir</div></div>
+    <h2 class="sec-title">Pengalaman <span>Kerja</span></h2>
+    <div class="exp-grid">
+
+      <div class="glass-card exp-card fade-up">
+        <div class="exp-header">
+          <div class="exp-role">Staff Survey &amp; Design</div>
+          <div class="exp-badge">Jun 2025 &mdash; Okt 2025</div>
+        </div>
+        <div class="exp-company">PT Bimasakti Selular Indonesia &middot; Bandung</div>
+        <ul class="exp-points">
+          <li>Merancang dan menyusun desain topologi FTTH sesuai spesifikasi teknis proyek dari awal hingga siap implementasi.</li>
+          <li>Melakukan survei lapangan untuk menganalisis kebutuhan infrastruktur dan kelayakan jalur pemasangan jaringan.</li>
+          <li>Berkolaborasi lintas tim untuk memastikan data teknis, desain, dan dokumentasi terpenuhi tepat waktu.</li>
+        </ul>
+      </div>
+
+      <div class="glass-card exp-card fade-up">
+        <div class="exp-header">
+          <div class="exp-role">Teknisi Instalasi FTTH</div>
+          <div class="exp-badge">Jan 2024 &mdash; Apr 2024</div>
+        </div>
+        <div class="exp-company">PT Indonesia Comnet Plus (ICONNET)</div>
+        <ul class="exp-points">
+          <li>Melaksanakan instalasi layanan internet Fiber Optic dari ODP hingga terminasi di sisi pengguna.</li>
+          <li>Menyusun laporan harian dan bulanan tim teknisi sebagai bahan evaluasi performa lapangan.</li>
+          <li>Terdaftar sebagai Marketer Resmi ICONNET di platform ICRM Plus.</li>
+        </ul>
+      </div>
+
+      <div class="glass-card exp-card fade-up">
+        <div class="exp-header">
+          <div class="exp-role">Operational Manager</div>
+          <div class="exp-badge">2023 &mdash; 2024</div>
+        </div>
+        <div class="exp-company">Caringin Tani (Toko Tanipertiwiindo &amp; Caringintanii)</div>
+        <ul class="exp-points">
+          <li>Mengelola keseluruhan operasional dua toko pertanian dengan total omset mencapai Rp 2 Miliar.</li>
+          <li>Mengawasi manajemen stok, koordinasi supplier, dan pelaporan keuangan harian.</li>
+        </ul>
+      </div>
+
+      <div class="glass-card exp-card fade-up">
+        <div class="exp-header">
+          <div class="exp-role">Founder &amp; Creative Director</div>
+          <div class="exp-badge">2023 &mdash; Sekarang</div>
+        </div>
+        <div class="exp-company">Ailuascreative (Mandiri)</div>
+        <ul class="exp-points">
+          <li>Mendirikan dan menjalankan agensi kreatif yang melayani kebutuhan jaringan, photography, dan manajemen web.</li>
+          <li>Menangani langsung proyek klien mulai dari konsep, eksekusi, hingga pelaporan hasil.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PENDIDIKAN -->
+<section id="pendidikan">
+  <div class="container">
+    <div class="sec-label"><div class="sec-label-line"></div><div class="sec-label-text">Latar Belakang</div></div>
+    <h2 class="sec-title">Pendidikan &amp; <span>Sertifikasi</span></h2>
+
+    <div class="glass-card edu-card fade-up" style="margin-bottom: 2rem;">
+      <a href="https://res.cloudinary.com/dozoyiidz/image/upload/v1772494039/smk_yasti_nbodm4.jpg" target="_blank" class="edu-badge" style="padding:0;overflow:hidden;display:block;">
+        <img src="https://res.cloudinary.com/dozoyiidz/image/upload/v1772494039/smk_yasti_nbodm4.jpg" alt="SMK Yasti Cisaat" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      </a>
+      <div>
+        <div class="edu-school">SMK Yasti Cisaat</div>
+        <div class="edu-major">Teknik Komputer Jaringan &middot; Cisaat, Sukabumi</div>
+        <div class="edu-period">Lulus 2025</div>
+        <div class="edu-note">Aktif di ekstrakurikuler teknologi jaringan (ROOT). Meraih predikat salah satu siswa terbaik dalam perakitan komputer dan hardware.</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="glass-card list-card fade-up">
+        <div class="list-card-title">Sertifikasi</div>
+
+        <a href="https://res.cloudinary.com/dozoyiidz/image/upload/v1772493854/cisco_rifky_hendriana_kstffs.png" target="_blank" style="display:flex;align-items:center;gap:1rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.05);text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
+          <div style="flex-shrink:0;width:80px;height:56px;border-radius:8px;overflow:hidden;border:1px solid var(--glass-border);">
+            <img src="https://res.cloudinary.com/dozoyiidz/image/upload/v1772493854/cisco_rifky_hendriana_kstffs.png" alt="Sertifikat Cisco" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          </div>
+          <div>
+            <div class="cert-name">Cisco</div>
+            <div class="cert-issuer">ID-Networkers (IDN.ID)</div>
+            <div class="cert-valid" style="margin-top:0.2rem;">s.d. Mei 2028</div>
+          </div>
+        </a>
+
+        <a href="https://res.cloudinary.com/dozoyiidz/image/upload/v1772493855/mikrotik_rifky_hendriana_tnzmtz.png" target="_blank" style="display:flex;align-items:center;gap:1rem;padding:0.75rem 0;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
+          <div style="flex-shrink:0;width:80px;height:56px;border-radius:8px;overflow:hidden;border:1px solid var(--glass-border);">
+            <img src="https://res.cloudinary.com/dozoyiidz/image/upload/v1772493855/mikrotik_rifky_hendriana_tnzmtz.png" alt="Sertifikat Mikrotik" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          </div>
+          <div>
+            <div class="cert-name">Mikrotik</div>
+            <div class="cert-issuer">ID-Networkers (IDN.ID)</div>
+            <div class="cert-valid" style="margin-top:0.2rem;">s.d. Mei 2028</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="glass-card list-card fade-up">
+        <div class="list-card-title">Prestasi</div>
+        <div class="prestasi-item">
+          <div>
+            <div class="cert-name">Peringkat 1 &mdash; Semester Genap 2024/2025</div>
+            <div class="cert-issuer">Kelas XII TKJ 1, SMK Yasti Cisaat</div>
+          </div>
+        </div>
+        <div class="prestasi-item">
+          <div>
+            <div class="cert-name">Siswa Terbaik Perakitan Komputer &amp; Hardware</div>
+            <div class="cert-issuer">Ekstrakurikuler ROOT, SMK Yasti Cisaat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANISASI -->
+<section class="sec-alt">
+  <div class="container">
+    <div class="sec-label"><div class="sec-label-line"></div><div class="sec-label-text">Organisasi</div></div>
+    <h2 class="sec-title">Kegiatan &amp; <span>Organisasi</span></h2>
+    <div class="org-grid">
+      <div class="glass-card org-card fade-up">
+        <div class="org-role">Wakil Ketua OSIS</div>
+        <div class="org-place">SMK Yasti Cisaat</div>
+        <div class="org-period">2023 &mdash; 2024</div>
+        <div class="org-desc">Memimpin dan mengkoordinasikan kegiatan siswa berskala sekolah. Aktif dalam kegiatan remaja masjid dan organisasi sosial kemasyarakatan di lingkungan sekolah.</div>
+      </div>
+      <div class="glass-card org-card fade-up">
+        <div class="org-role">Anggota OSIS</div>
+        <div class="org-place">SMK Yasti Cisaat</div>
+        <div class="org-period">2022 &mdash; 2023</div>
+        <div class="org-desc">Terlibat aktif dalam berbagai program dan kegiatan kesiswaan, melatih kemampuan kolaborasi dan tanggung jawab organisasi.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section class="contact-section" id="kontak">
+  <div class="container">
+    <div class="sec-label"><div class="sec-label-line"></div><div class="sec-label-text">Hubungi</div></div>
+    <h2 class="sec-title">Mari <span>Terhubung</span></h2>
+    <div class="contact-grid">
+      <div class="contact-left fade-up">
+        <h3>Terbuka untuk peluang baru dan kolaborasi.</h3>
+        <p>Baik itu proyek jaringan, infrastruktur IT, atau kolaborasi kreatif &mdash; saya siap berdiskusi dan berkontribusi.</p>
+        <div class="contact-items">
+          <a href="https://wa.me/6282117468823" target="_blank" class="c-item" style="color:var(--text-dim);">
+            <div class="c-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="url(#waGrad)">
+                <defs>
+                  <linearGradient id="waGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#00c9b1"/>
+                    <stop offset="100%" style="stop-color:#22d3ee"/>
+                  </linearGradient>
+                </defs>
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.856L.054 23.446a.75.75 0 0 0 .92.92l5.628-1.484A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.686-.516-5.21-1.415l-.373-.22-3.862 1.018 1.012-3.772-.242-.389A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+              </svg>
+            </div>
+            <div><div class="c-label">WhatsApp</div><div class="c-value">082117468823</div></div>
+          </a>
+          <a href="mailto:rifkyhn.rizal@gmail.com" class="c-item" style="color:var(--text-dim);">
+            <div class="c-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="url(#mailGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <defs>
+                  <linearGradient id="mailGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#00c9b1"/>
+                    <stop offset="100%" style="stop-color:#22d3ee"/>
+                  </linearGradient>
+                </defs>
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div><div class="c-label">Email</div><div class="c-value">rifkyhn.rizal@gmail.com</div></div>
+          </a>
+          <a href="https://maps.app.goo.gl/tM5LycsYvT79bhWu6" target="_blank" class="c-item" style="color:var(--text-dim);">
+            <div class="c-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="url(#mapsGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <defs>
+                  <linearGradient id="mapsGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#00c9b1"/>
+                    <stop offset="100%" style="stop-color:#22d3ee"/>
+                  </linearGradient>
+                </defs>
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div><div class="c-label">Lokasi</div><div class="c-value">Caringin, Sukabumi, Jawa Barat</div></div>
+          </a>
+          <a href="https://instagram.com/rfky_hn" target="_blank" class="c-item" style="color:var(--text-dim);">
+            <div class="c-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="url(#igGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <defs>
+                  <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#00c9b1"/>
+                    <stop offset="100%" style="stop-color:#22d3ee"/>
+                  </linearGradient>
+                </defs>
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+            <div><div class="c-label">Instagram</div><div class="c-value">@rfky_hn</div></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="glass-card fade-up" style="padding:2.5rem;">
+        <div style="font-weight:700;font-size:1rem;margin-bottom:1.5rem;">Kirim Pesan</div>
+        <div id="form-success" style="display:none;text-align:center;padding:2rem 0;">
+          <div style="font-size:2rem;margin-bottom:0.5rem;">✅</div>
+          <div style="font-weight:700;color:var(--teal);margin-bottom:0.3rem;">Pesan Terkirim!</div>
+          <div style="font-size:0.85rem;color:var(--text-dim);">Terima kasih, saya akan segera membalas.</div>
+        </div>
+        <form id="contact-form" onsubmit="handleSend(event)">
+          <div style="margin-bottom:1rem;">
+            <label style="display:block;font-size:0.78rem;font-weight:600;color:var(--text-dim);margin-bottom:0.4rem;">Nama</label>
+            <input type="text" name="nama" required placeholder="Nama Anda" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text);font-family:'Poppins',sans-serif;font-size:0.88rem;padding:0.75rem 1rem;border-radius:12px;outline:none;transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--glass-border)'"/>
+          </div>
+          <div style="margin-bottom:1rem;">
+            <label style="display:block;font-size:0.78rem;font-weight:600;color:var(--text-dim);margin-bottom:0.4rem;">Email</label>
+            <input type="email" name="email" required placeholder="email@domain.com" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text);font-family:'Poppins',sans-serif;font-size:0.88rem;padding:0.75rem 1rem;border-radius:12px;outline:none;transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--glass-border)'"/>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <label style="display:block;font-size:0.78rem;font-weight:600;color:var(--text-dim);margin-bottom:0.4rem;">Pesan</label>
+            <textarea name="pesan" required placeholder="Tulis pesan Anda..." style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text);font-family:'Poppins',sans-serif;font-size:0.88rem;padding:0.75rem 1rem;border-radius:12px;outline:none;resize:vertical;min-height:100px;transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--glass-border)'"></textarea>
+          </div>
+          <button type="submit" id="send-btn" style="width:100%;background:linear-gradient(135deg,var(--teal),var(--cyan));color:var(--ocean1);font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:700;padding:0.8rem;border-radius:50px;border:none;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 24px rgba(0,201,177,0.35);">
+            Kirim Pesan
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Dibuat oleh <strong>Rifky Hendriana</strong> &mdash; Computer &amp; Network Engineer &middot; Sukabumi, Jawa Barat</p>
+  <p style="margin-top:0.4rem;font-size:0.78rem;color:var(--muted,#555);">Ailuascreative Founder &mdash; Rifky Hendriana &copy; All Rights Reserved</p>
+</footer>
+
+<script>
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  async function handleSend(e) {
+    e.preventDefault();
+    const btn = document.getElementById('send-btn');
+    const form = document.getElementById('contact-form');
+    const nama = form.querySelector('[name=nama]').value;
+    const email = form.querySelector('[name=email]').value;
+    const pesan = form.querySelector('[name=pesan]').value;
+
+    btn.textContent = 'Mengirim...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('https://formspree.io/f/xvzbjqdq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ nama, email, pesan })
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Gagal, coba lagi';
+        btn.disabled = false;
+      }
+    } catch(err) {
+      btn.textContent = 'Gagal, coba lagi';
+      btn.disabled = false;
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
