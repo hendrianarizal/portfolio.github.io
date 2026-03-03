@@ -20,8 +20,8 @@
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6282117468823)
 [![Email](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:rifkyhn.rizal@gmail.com)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/rfky_hn)
-[![TikTok](https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=tiktok&logoColor=white)](https://tiktok.com/@ailuasc)
-[![Website](https://img.shields.io/badge/Portfolio-rifky.dev-00D9FF?style=for-the-badge&logo=vercel&logoColor=white)](https://rifky.dev)
+[![TikTok](https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=tiktok&logoColor=white)](https://tiktok.com/@anairdnehzi)
+[![Website](https://img.shields.io/badge/Portfolio-rifky.dev-00D9FF?style=for-the-badge&logo=vercel&logoColor=white)](https://hendrianarizal.github.io/portfolio.github.io)
 
 </div>
 
@@ -32,7 +32,7 @@
 ```yaml
 name       : Rifky Hendriana
 location   : Caringin, Sukabumi, Jawa Barat 🇮🇩
-education  : SMK Yasti Cisaat — Teknik Komputer Jaringan (Lulus 2025)
+education  : SMK Yasti Cisaat — Teknik Komputer Jaringan (2025)
 experience : 3+ Tahun di bidang Networking & Telekomunikasi
 company    : Ailuascreative (Founder) · PT Bimasakti Selular Indonesia
 status     : Open to Opportunities ✅
