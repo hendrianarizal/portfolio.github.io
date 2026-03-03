@@ -152,9 +152,9 @@ status     : Open to Opportunities ✅
 
 | 🏆 Pencapaian | 🎯 Detail |
 |---|---|
-| 🥇 Peringkat 1 Kelas | Semester Genap 2024/2025 · XII TKJ 1 |
+| 🥇 Peringkat 1 | Semester Genap 2024/2025 · XII TKJ 1 |
 | 💻 Siswa Terbaik Hardware | Perakitan Komputer & IoT RFID Project |
-| 💰 Omset Dikelola | **Rp 2 Miliar** |
+| 💰 Omset Dikelola | **Rp 2 Miliar +** |
 | 📡 Tahun Pengalaman | **3+ Tahun** di bidang Networking |
 | 🏅 Sertifikasi Aktif | Cisco & MikroTik (valid 2028) |
 
@@ -177,7 +177,7 @@ Terbuka untuk peluang baru — proyek jaringan, infrastruktur IT, atau kolaboras
 
 ---
 
-<sub>Made with ❤️ by <b>Rifky Hendriana</b> · Ailuascreative Founder · Sukabumi, Jawa Barat</sub>
+<sub>Made with my hand <b>Rifky Hendriana</b> · Ailuascreative Founder · Sukabumi, Jawa Barat</sub>
 
 ![Visitor Count](https://komarev.com/ghpvc/?username=rifkyhn&color=00D9FF&style=flat-square&label=Profile+Views)
 
